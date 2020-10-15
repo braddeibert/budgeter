@@ -17,19 +17,19 @@ class Expense(models.Model):
     amount = models.FloatField()
 
     def __str__(self):
-        return self.name + ' ' + self.amount
+        return self.name
 
     def get_absolute_url(self):
         return (reverse('expense', args=[str(self.id)]))
 
-class Purchases(models.Model):
+class Purchase(models.Model):
     expense = models.ForeignKey(Expense, on_delete=models.CASCADE)
     name = models.CharField(max_length=64)
     date = models.DateField()
     amount = models.FloatField()
 
     def __str__(self):
-        return self.date + ' ' + self.name + ' ' + self.amount
+        return self.name
 
     def get_absolute_url(self):
         return (reverse('purchase', args=[str(self.id)]))
