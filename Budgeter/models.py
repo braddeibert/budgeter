@@ -12,7 +12,7 @@ class Budget(models.Model):
         return (reverse('budget', args=[str(self.id)]))        
 
 class Expense(models.Model):
-    budget = models.ForeignKey(Budget)
+    budget = models.ForeignKey(Budget, on_delete=models.CASCADE)
     name = models.CharField(max_length=64)
     amount = models.FloatField()
 
@@ -23,7 +23,7 @@ class Expense(models.Model):
         return (reverse('expense', args=[str(self.id)]))
 
 class Purchases(models.Model):
-    expense = models.ForeignKey(Expense)
+    expense = models.ForeignKey(Expense, on_delete=models.CASCADE)
     name = models.CharField(max_length=64)
     date = models.DateField()
     amount = models.FloatField()
