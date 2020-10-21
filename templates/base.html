@@ -7,14 +7,21 @@
     <title>{% block title %}Budgeter{% endblock title %}</title>
     <link rel="stylesheet" href="{% static "/css/skeleton.css" %}">
     <link rel="stylesheet" href="{% static "/css/style.css" %}">
+    <script src="{% static "/js/main.js" %}"></script>
 </head>
 <body>
 
     <div class="navbar">
         <img class="logo" src="{% static "icons\budgeter_logo.png" %}" alt="">
         <div class="icons">
-            <img class="nav-icons" src="{% static "icons\home.png" %}" alt="">
-            <img class="nav-icons" src="{% static "icons\hamburger.png" %}" alt="">
+            <a href="">
+                <img class="nav-icons" src="{% static "icons\home.png" %}" alt="">
+            </a>
+            <img id="burger" class="nav-icons" src="{% static "icons\hamburger.png" %}" alt="">
+            <div id="menu">
+                <a class="menu-item" href="">Item 1</a>
+                <a class="menu-item" href="">Item 2</a>
+            </div>
         </div>    
     </div>
 
