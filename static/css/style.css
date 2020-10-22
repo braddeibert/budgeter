@@ -35,6 +35,10 @@
   text-decoration: none;
 }
 
+.giphy-embed {
+  
+}
+
 /* Larger than mobile */
 @media (min-width: 320px) {
   .logo {
@@ -49,6 +53,9 @@
   }
   .logo {
     width: 400px;
+  }
+  #menu {
+    top: 90px;
   }
 }
 

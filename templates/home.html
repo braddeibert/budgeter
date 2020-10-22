@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h4>Welcome back, {{user.username}}!</h4>
+
+    <h2>Your Budgets</h2>
+
+    {% for budget in object_list %}
+        {% if user.username == budget.owner %}
+            <p>{{budget.name}}</p>
+        {% endif %}
+    {% endfor %}
+
+{% else %}
+    {% include 'about.html' %}
+{% endif %}
+
+{% endblock %}

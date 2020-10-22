@@ -19,8 +19,7 @@
             </a>
             <img id="burger" class="nav-icons" src="{% static "icons\hamburger.png" %}" alt="">
             <div id="menu">
-                <a class="menu-item" href="">Item 1</a>
-                <a class="menu-item" href="">Item 2</a>
+                {% block menu_items %}{% endblock %}
             </div>
         </div>    
     </div>
