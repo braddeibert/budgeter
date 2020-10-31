@@ -1,8 +1,11 @@
 from django.urls import path
-from .views import HomeView, BudgetListView, ExpenseListView, PurchaseListView
+from .views import Home, BudgetExpenseList, ExpensePurchaseList, CreateBudget, CreateUser
 
 
 urlpatterns = [
-    path('', HomeView.as_view(), name='home'),
-    path('budgets/', BudgetListView.as_view(), name='budget-list'),
+    path('', Home.as_view(), name='home'),
+    path('budgets/<int:pk>', BudgetExpenseList.as_view(), name='budget-detail'),
+    path('expense/<int:pk>', ExpensePurchaseList.as_view(), name='expense-detail'),
+    path('new_budget/', CreateBudget.as_view(), name='create-budget'),
+    path('signup/', CreateUser.as_view(), name='signup')
 ]

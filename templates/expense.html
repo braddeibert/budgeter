@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Expense{% endblock %}
+
+{% block content %}
+<h2>{{ pk }}</h2>
+
+{% if not object_list %}
+    <p>No tracked purchases for this expense yet! Add some</p>
+
+{% else %}
+    <ul>
+        {% for purchase in object_list %}
+            <li><a href="/purchase/{{ purchase.id }}">{{ purchase.name }} {{ purchase.amount }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

@@ -11,7 +11,7 @@ class Budget(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return (reverse('budget', args=[str(self.id)]))        
+        return (reverse('budget', args=[str(self.id)]))   
 
 class Expense(models.Model):
     budget = models.ForeignKey(Budget, on_delete=models.CASCADE)

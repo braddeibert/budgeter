@@ -5,12 +5,10 @@
 {% if user.is_authenticated %}
     <h4>Welcome back, {{user.username}}!</h4>
 
-    <h2>Your Budgets</h2>
+    <h2>Your Budgets <a class="add button button-primary" href="new_budget/">Add +</a></h2>
 
     {% for budget in object_list %}
-        {% if user.username == budget.owner %}
-            <p>{{budget.name}}</p>
-        {% endif %}
+        <a href="/budgets/{{ budget.id }}">{{budget.name}}</a>
     {% endfor %}
 
 {% else %}

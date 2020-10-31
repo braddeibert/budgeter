@@ -20,6 +20,11 @@
   padding: 5px;
 }
 
+.add {
+  float: right;
+  margin-top: 10px;
+}
+
 #menu {
   display: none;
   position: absolute;
@@ -33,10 +38,6 @@
 #menu .menu-item {
   display: block;
   text-decoration: none;
-}
-
-.giphy-embed {
-  
 }
 
 /* Larger than mobile */
