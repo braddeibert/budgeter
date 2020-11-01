@@ -1,19 +1,35 @@
 {% extends 'base.html' %}
+{% load budgeter_extras %}
 
 {% block title %}Expense{% endblock %}
 
 {% block content %}
-<h2>{{ pk }}</h2>
+<h6><a href="{% url 'home' %}">Budgets</a> - <a href="{% url 'budget-detail' pk.budget.id %}">{{ pk.budget | title }}</a> - {{ pk }}</h6>
+<h2>{{ pk }} <a class="add button button-primary" href="{% url 'track-purchase' pk.id %}">Add +</a></h2>
+<h3>Goal: {{ pk.amount | currency }}</h3>
 
+<h3>Tracked Purchases</h3>
 {% if not object_list %}
-    <p>No tracked purchases for this expense yet! Add some</p>
+    <p>No tracked purchases for this expense yet! Click the "Add" button to get tracking. </p>
 
 {% else %}
-    <ul>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Amount</th>
+        </tr>
         {% for purchase in object_list %}
-            <li><a href="/purchase/{{ purchase.id }}">{{ purchase.name }} {{ purchase.amount }}</a></li>
+            <tr>
+                <td>{{ purchase.name }}</td>
+                <td>{{ purchase.date }}</td>
+                <td>{{ purchase.amount | currency }}</td>
+                <td>Remove</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 {% endif %}
+
+<h3>Net: {{ pk.net | currency }}</h3>
 
 {% endblock %}

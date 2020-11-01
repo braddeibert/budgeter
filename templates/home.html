@@ -1,15 +1,37 @@
 {% extends 'base.html' %}
+{% load budgeter_extras %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h4>Welcome back, {{user.username}}!</h4>
+    <h4>Welcome back, {{ user.username }}!</h4>
 
-    <h2>Your Budgets <a class="add button button-primary" href="new_budget/">Add +</a></h2>
+    <h2>Your Budgets <a class="add button button-primary" href="{% url 'create-budget' %}">Add +</a></h2>
 
-    {% for budget in object_list %}
-        <a href="/budgets/{{ budget.id }}">{{budget.name}}</a>
-    {% endfor %}
+    {% if not object_list %}
+    <p>No budgets yet! Create one</p>
+
+    {% else %}
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Funds Remaining</th>
+                <th>Budgeted Expenses</th>
+                <th>Tracked Purchases</th>
+            </tr>
+            {% for budget in object_list %}
+                <tr>
+                    <td><a href="/budgets/{{ budget.id }}">{{budget.name}}</a></td>
+                    <td>{{ budget.get_remaining_funds | currency }}</td>
+                    <td>test</td>
+                    <td>test</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    <h3>Recently Added Purchases</h3>
+    <p>most recents here</p>
 
 {% else %}
     {% include 'about.html' %}

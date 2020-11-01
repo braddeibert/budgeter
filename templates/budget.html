@@ -1,19 +1,34 @@
 {% extends 'base.html' %}
+{% load budgeter_extras %}
 
 {% block title %}Budgets{% endblock %}
 
 {% block content %}
-<h2>{{ pk }}</h2>
+<h6> <a href="{% url 'home' %}">Budgets</a> - {{ pk | title }}</h6>
+<h2>{{ pk | title }}</h2>
+<h4>Funds remaining: {{ pk.get_remaining_funds | currency }} </h4>
 
+<h3>Expenses <a class="add button button-primary" href="{% url 'add-expense' pk.id %}">Add +</a></h3>
 {% if not object_list %}
     <p>No expense categories under this budget yet! Add some</p>
 
 {% else %}
-    <ul>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Budgeted Amount</th>
+            <th>Spent Amount</th>
+            <th>Over/Under</th>
+        </tr>
         {% for expense in object_list %}
-            <li><a href="/expense/{{ expense.id }}">{{ expense.name }}</a></li>
+            <tr>
+                <td><a href="/expense/{{ expense.id }}">{{ expense.name }}</a></td>
+                <td>{{ expense.amount | currency }}</td>
+                <td>{{ expense.get_total_purchases | currency }}</td>
+                <td>{{ expense.net | currency }}</td>
+            </tr>
         {% endfor %}
-    </ul>
+    </table>
 {% endif %}
 
 {% endblock %}

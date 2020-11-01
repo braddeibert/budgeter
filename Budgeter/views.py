@@ -21,6 +21,7 @@ class Home(ListView):
 
         return result
 
+
 class BudgetExpenseList(LoginRequiredMixin, ListView):
     template_name = 'budget.html'
 
@@ -56,17 +57,33 @@ class CreateBudget(CreateView):
 
 
 class AddBudgetExpense(CreateView):
+    template_name = 'add_expense.html'
+
     model = Expense
-    fields = ['name', 'amount']
+    fields = ['name', 'amount', 'budget']
+
+    def get_success_url(self):
+        budgetid = self.kwargs['pk']
+        return reverse_lazy('budget-detail', kwargs={'pk': budgetid})
 
 
 class AddExpensePurchase(CreateView):
-    model = Purchase
-    fields = ['name', 'date', 'amount']
+    template_name = 'track_purchase.html'
 
+    model = Purchase
+    fields = ['name', 'date', 'amount', 'expense']
+
+    def get_success_url(self):
+        expenseid = self.kwargs['pk']
+        return reverse_lazy('expense-detail', kwargs={'pk': expenseid})
+
+
+class UserAccount(DetailView):
+    template_name = 'account.html'
+
+    model = User
 
 class CreateUser(CreateView):
     template_name = "signup.html"
-
-    model = User
-    fields = ['username', 'password']
+    success_url = reverse_lazy('login')
+    form_class = UserCreationForm
