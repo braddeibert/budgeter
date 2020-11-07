@@ -5,10 +5,10 @@
 
 {% block content %}
 <h6><a href="{% url 'home' %}">Budgets</a> - <a href="{% url 'budget-detail' pk.budget.id %}">{{ pk.budget | title }}</a> - {{ pk }}</h6>
-<h2>{{ pk }} <a class="add button button-primary" href="{% url 'track-purchase' pk.id %}">Add +</a></h2>
+<h2>{{ pk }}</h2>
 <h3>Goal: {{ pk.amount | currency }}</h3>
 
-<h3>Tracked Purchases</h3>
+<h3>Tracked Purchases <a class="add button button-primary" href="{% url 'track-purchase' pk.id %}">Add +</a></h3>
 {% if not object_list %}
     <p>No tracked purchases for this expense yet! Click the "Add" button to get tracking. </p>
 
@@ -24,7 +24,7 @@
                 <td>{{ purchase.name }}</td>
                 <td>{{ purchase.date }}</td>
                 <td>{{ purchase.amount | currency }}</td>
-                <td>Remove</td>
+                <td><a href="">Delete</a></td>
             </tr>
         {% endfor %}
     </table>

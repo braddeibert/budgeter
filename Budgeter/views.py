@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView, UpdateView
 
-from .models import Budget, Expense, Purchase, User
+from .models import Budget, Expense, Purchase, Budgeter, User
 
 # Create your views here.
 class Home(ListView):
@@ -56,6 +56,12 @@ class CreateBudget(CreateView):
     fields = ['name', 'owner']
 
 
+class DeleteBudget(DeleteView):
+    template_name = 'delete_budget.html'
+    success_url = reverse_lazy('home')
+    model = Budget
+
+
 class AddBudgetExpense(CreateView):
     template_name = 'add_expense.html'
 
@@ -79,11 +85,31 @@ class AddExpensePurchase(CreateView):
 
 
 class UserAccount(DetailView):
-    template_name = 'account.html'
-
+    template_name = 'accounts/account.html'
     model = User
 
+
+class UpdateAccount(UpdateView):
+    template_name = 'accounts/edit_account.html'
+
+    model = User
+    fields = ['username', 'first_name', 'last_name', 'email']
+
+    def get_success_url(self):
+        userid = self.kwargs['pk']
+        return reverse_lazy('account-view', kwargs={'pk': userid})
+
+
+class DeleteAccount(DeleteView):
+    template_name = 'accounts/delete_account.html'
+    success_url = reverse_lazy('home')
+    model = User
+
+
 class CreateUser(CreateView):
-    template_name = "signup.html"
+    template_name = "registration/signup.html"
     success_url = reverse_lazy('login')
     form_class = UserCreationForm
+
+
+#class DeletePurchase(DeleteView):

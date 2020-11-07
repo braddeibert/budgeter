@@ -28,11 +28,24 @@ class Budget(models.Model):
         spent = 0
 
         for expense in self.expenses:
-            spent += expense.get_total_purchases()
+            spent += expense.get_purchases()[1]
 
         self.remaining_funds = budgeted - spent
 
         return self.remaining_funds
+
+    def get_number_expenses(self):
+        self.expenses = Expense.objects.filter(budget=self.id)
+        return len(self.expenses)
+
+    def get_number_purchases(self):
+        self.expenses = Expense.objects.filter(budget=self.id)
+        num_purchases = 0
+
+        for expense in self.expenses:
+            num_purchases += expense.get_purchases()[0]
+
+        return num_purchases
 
 
 class Expense(models.Model):
@@ -46,17 +59,20 @@ class Expense(models.Model):
     def get_absolute_url(self):
         return (reverse('expense', args=[str(self.id)]))
 
-    def get_total_purchases(self):
+    def get_purchases(self):
         self.purchases = Purchase.objects.filter(expense=self.id)
         self.total = 0
+        self.num_purchases = 0
 
         for purchase in self.purchases:
             self.total += purchase.amount
+            self.num_purchases += 1
 
-        return self.total
+        return self.num_purchases, self.total
 
     def net(self):
-        return self.amount - self.get_total_purchases()
+        return self.amount - self.get_purchases()[1]
+
 
 class Purchase(models.Model):
     expense = models.ForeignKey(Expense, on_delete=models.CASCADE)
@@ -69,3 +85,9 @@ class Purchase(models.Model):
 
     def get_absolute_url(self):
         return (reverse('purchase', args=[str(self.id)]))
+
+
+class Budgeter(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    income = models.FloatField()
+    

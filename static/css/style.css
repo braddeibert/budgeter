@@ -20,9 +20,33 @@
   padding: 5px;
 }
 
-.add {
+.add, .edit {
   float: right;
   margin-top: 10px;
+}
+
+.delete {
+  color: red;
+}
+
+.delete:hover {
+  transition: 0.25s;
+  color: white;
+  background-color: red;
+}
+
+.edit-mode {
+  display: none;
+}
+
+.modal {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  border: solid 1px black;
+  border-radius: 5px;
+  padding: 25px;
 }
 
 #menu {

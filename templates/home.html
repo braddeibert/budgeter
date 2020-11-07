@@ -23,8 +23,8 @@
                 <tr>
                     <td><a href="/budgets/{{ budget.id }}">{{budget.name}}</a></td>
                     <td>{{ budget.get_remaining_funds | currency }}</td>
-                    <td>test</td>
-                    <td>test</td>
+                    <td>{{ budget.get_number_expenses }}</td>
+                    <td>{{ budget.get_number_purchases }}</td>
                 </tr>
             {% endfor %}
         </table>
