@@ -55,9 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-MIDDLEWARE_CLASSES = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
@@ -129,14 +126,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-if DEBUG:
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
-else: 
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+    
+EMAIL_BACKEND = 'django.cqore.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = '/'
 
 # Activating django-heroku
