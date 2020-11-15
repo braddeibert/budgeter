@@ -1,0 +1,52 @@
+.navbar {
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    margin: 10px 0px 25px 0px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    margin-left: auto;    
+}
+
+.edit-buttons {
+    display: inline;
+    float: right;
+}
+
+.edit-links {
+    color: gray;
+    font-size: 1.5rem;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.delete {
+    color: red;
+}
+
+.delete:hover {
+    transition: 0.25s;
+    color: white;
+    background-color: red;
+}
+
+.icons {
+    height: 1.5rem;
+}
+
+.table-btn {
+    height: auto;
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.hidden {
+    display: none;
+}
+
+.borderless {
+    border: none;
+    padding: 0px;
+}
