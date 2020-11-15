@@ -9,6 +9,9 @@ verify_ssl = true
 django = "==3.0"
 django-sass = "*"
 django-bootstrap-modal-forms = "*"
+django-heroku = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.8"
