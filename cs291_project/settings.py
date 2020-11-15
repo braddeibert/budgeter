@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'bootstrap_modal_forms',
     'whitenoise.runserver_nostatic',
 
-    # My app
+    # Custom apps
+    'accounts',
     'Budgeter', 
 ]
 
@@ -110,6 +111,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
 
 
 # Internationalization

@@ -24,7 +24,6 @@ urlpatterns = [
     # Account views
     path('account/<int:pk>', UserAccount.as_view(), name='account-view'),
     path('account/<int:pk>/update', UpdateAccount.as_view(), name='update-personal-info'),
-    path('account/<int:pk>/update-income', UpdateIncome.as_view(), name='update-income'),
     path('account/<int:pk>/delete', DeleteAccount.as_view(), name='delete-account'),
 
     # Password management views

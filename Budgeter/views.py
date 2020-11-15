@@ -163,20 +163,6 @@ class UpdateAccount(UpdateView):
         return reverse_lazy('account-view', kwargs={'pk': userid})
 
 
-class UpdateIncome(UpdateView):
-    template_name = 'accounts/edit_account_financial.html'
-
-    model = Budgeter
-    fields = ['income']
-
-    def get_object(self, queryset=None):
-        return get_object_or_404(Budgeter, user=self.kwargs['pk'])
-
-    def get_success_url(self):
-        userid = self.kwargs['pk']
-        return reverse_lazy('account-view', kwargs={'pk': userid})
-
-
 class DeleteAccount(DeleteView):
     template_name = 'accounts/delete_account.html'
     success_url = reverse_lazy('home')
