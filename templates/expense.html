@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load budgeter_extras %}
 
 {% block title %}Expense{% endblock %}
@@ -6,9 +7,13 @@
 {% block content %}
 <h6><a href="{% url 'home' %}">Budgets</a> - <a href="{% url 'budget-detail' pk.budget.id %}">{{ pk.budget | title }}</a> - {{ pk }}</h6>
 <h2>{{ pk }}</h2>
-<h3>Goal: {{ pk.amount | currency }}</h3>
+<h3>Budgeted: {{ pk.amount | currency }}</h3>
 
-<h3>Tracked Purchases <a class="add button button-primary" href="{% url 'track-purchase' pk.id %}">Add +</a></h3>
+<h3>Tracked Purchases 
+    <div class="edit-buttons">
+        <button type="button" class="bs-modal add button button-primary" data-form-url="{% url 'track-purchase' pk.id %}">Add +</button>
+    </div>
+</h3>
 {% if not object_list %}
     <p>No tracked purchases for this expense yet! Click the "Add" button to get tracking. </p>
 
@@ -18,13 +23,14 @@
             <th>Name</th>
             <th>Date</th>
             <th>Amount</th>
+            <th></th>
         </tr>
         {% for purchase in object_list %}
             <tr>
                 <td>{{ purchase.name }}</td>
                 <td>{{ purchase.date }}</td>
                 <td>{{ purchase.amount | currency }}</td>
-                <td><a href="">Delete</a></td>
+                <td><button type="button" class="bs-modal delete table-btn" data-form-url="{% url 'delete-purchase' pk.id purchase.pk %}"><img class="icons" src="{% static 'icons/delete.svg' %}" alt=""></button></td>
             </tr>
         {% endfor %}
     </table>

@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 django = "==3.0"
 django-sass = "*"
+django-bootstrap-modal-forms = "*"
 
 [requires]
 python_version = "3.8"

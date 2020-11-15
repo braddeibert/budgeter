@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Update Account{% endblock %}
+{% block title %}{{ object.username }} - Edit Personal Information{% endblock %}
 
 {% block content %}
-<h2>Update Account</h2>
+<h2>Edit Personal Information</h2>
 
 <form method="post">{% csrf_token %}
     {{ form.as_p }}

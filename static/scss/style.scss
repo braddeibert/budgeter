@@ -1,28 +1,25 @@
 .navbar {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 25px;
-}
-
-.logo {
-    width: 200px;
-    align-self: center;
+    border-radius: 10px;
+    border: 1px solid lightgray;
+    margin: 10px 0px 25px 0px;
 }
 
 .icons {
     display: flex;
     align-items: center;
     margin-left: auto;    
-    
-    .nav-icons {
-        width: 2.5rem;
-        padding: 5px;
-    }
 }
 
-.add, .edit {
+.edit-buttons {
+    display: inline;
     float: right;
-    margin-top: 10px;
+}
+
+.edit-links {
+    color: gray;
+    font-size: 1.5rem;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .delete {
@@ -35,92 +32,21 @@
     background-color: red;
 }
 
-.edit-mode {
+.icons {
+    height: 1.5rem;
+}
+
+.table-btn {
+    height: auto;
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.hidden {
     display: none;
 }
 
-.modal {
-    display: none;
-    position: absolute;
-    z-index: 10;
-    background-color: white;
-    border: solid 1px black;
-    border-radius: 5px;
-    padding: 25px;
-}
-
-#menu {
-    display: none;
-    position: absolute;
-    top: 60px;
-    right: 10px;
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
-
-    .menu-item {
-        display: block;
-        text-decoration: none;
-    }
-}
-
-/* Larger than mobile */
-@media (min-width: 320px) {
-    .logo {
-        width: 250px;
-    }
-}
-
-/* Larger than phablet (also point when grid becomes active) */
-@media (min-width: 550px) {
-    .icons {
-        .nav-icons {
-            width: 3rem;
-        }
-    }
-
-    .logo {
-        width: 400px;
-    }
-
-    #menu {
-        top: 90px;
-    }
-}
-
-/* Larger than tablet */
-@media (min-width: 750px) {
-    .navbar {
-        flex-direction: column;
-    }
-
-    .logo {
-        width: 400px;
-    }
-
-    .icons {
-        margin-left: 0px;
-        align-self: center;
-
-        .nav-icons {
-            display: none;
-        }
-    }
-
-    #menu {
-        position: initial;
-        display: block;
-        border: none;
-
-        .menu-item {
-            display: inline;
-        }
-    }
-}
-
-/* Larger than desktop */
-@media (min-width: 1000px) {
-    .logo {
-        width: 450px;
-    }
+.borderless {
+    border: none;
+    padding: 0px;
 }

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load budgeter_extras %}
+
+{% block content %}
+
+    <h2>Account</h2>
+    <h4>Username: {{ object.username }}</h4>
+
+    <h5>Personal Information <a class="edit-links" href="{% url 'update-personal-info' object.pk %}">Edit</a></h5>
+    <h6>First name: {{ object.first_name }} </h6>
+    <h6>Last name: {{ object.last_name }}</h6>
+    <h6>Email: {{ object.email }}</h6>
+
+    <h5>Financial Information <a class="edit-links" href="{% url 'update-income' object.pk %}">Edit</a></h5>
+    <h6>Annual Income: {{ object.budgeter.income | currency }}</h6>
+
+    <h4>Settings</h4>
+    <a class="edit-links" href="{% url 'pw-change' object.pk %}">Password Change</a>
+    <a class="edit-links" style="display: block;" href="{% url 'delete-account' object.pk %}">Delete Account</a>
+
+{% endblock %}

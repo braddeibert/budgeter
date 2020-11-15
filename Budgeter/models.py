@@ -89,5 +89,5 @@ class Purchase(models.Model):
 
 class Budgeter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    income = models.FloatField()
-    
+    income = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+

@@ -1,16 +1,22 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load budgeter_extras %}
 
 {% block title %}Budgets{% endblock %}
 
 {% block content %}
 <h6> <a href="{% url 'home' %}">Budgets</a> - {{ pk | title }}</h6>
-<h2>{{ pk | title }} <button class="edit button-primary">Edit</button></h2>
+<h2>{{ pk | title }}</h2>
 <h4>Funds remaining: {{ pk.get_remaining_funds | currency }} </h4>
 
-<h3>Expenses <a class="add button button-primary" href="{% url 'add-expense' pk.id %}">Add +</a></h3>
+<h3>Expenses     
+    <div class="edit-buttons">
+        <button class="button" onclick="editMode()">Edit</button>
+        <button type="button" id="add-expense" class="bs-modal button button-primary" data-form-url="{% url 'add-expense' pk.id %}">Add +</button>
+    </div>
+</h3>
 {% if not object_list %}
-    <p>No expense categories under this budget yet! Add some</p>
+    <p>No expense categories under this budget yet. Click the "Add" button to add some! </p>
 
 {% else %}
     <table>
@@ -20,6 +26,8 @@
             <th>Tracked Purchases</th>
             <th>Total Spent</th>
             <th>Over/Under</th>
+            <th class="edit hidden"></th>
+            <th class="edit hidden"></th>
         </tr>
         {% for expense in object_list %}
             <tr>
@@ -28,14 +36,15 @@
                 <td>{{ expense.get_purchases.0 }}</td>
                 <td>{{ expense.get_purchases.1 | currency }}</td>
                 <td>{{ expense.net | currency }}</td>
-                <td class="edit-mode">Edit</td>
-                <td class="edit-mode">Delete</td>
+                <td class="edit hidden"> <button type="button" class="bs-modal table-btn" data-form-url="{% url 'edit-expense' pk.id expense.pk %}"> <img class="icons" src="{% static 'icons/edit.svg' %}" alt=""> </button></td>
+                <td class="edit hidden"> <button type="button" class="bs-modal delete table-btn" data-form-url="{% url 'delete-expense' pk.id expense.pk %}"><img class="icons" src="{% static 'icons/delete.svg' %}" alt=""></button></td>
             </tr>
         {% endfor %}
     </table>
 
-    <a class="edit-mode delete button" href="{% url 'delete-budget' pk.id %}">Delete</a>
-    <button class="edit-mode button-primary" onclick="">Cancel</button>
 {% endif %}
+
+<button class="bs-modal button borderless" data-form-url="{% url 'rename-budget' pk.id %}">Rename Budget</button><br>
+<a class="button borderless" href="{% url 'delete-budget' pk.id %}">Delete Budget</a><br>
 
 {% endblock %}

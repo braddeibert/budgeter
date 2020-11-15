@@ -6,10 +6,14 @@
 {% if user.is_authenticated %}
     <h4>Welcome back, {{ user.username }}!</h4>
 
-    <h2>Your Budgets <a class="add button button-primary" href="{% url 'create-budget' %}">Add +</a></h2>
+    <h2>Your Budgets 
+        <div class="edit-buttons">
+            <button id="create-budget" class="button button-primary" type="button">Add +</button>
+        </div>
+    </h2>
 
     {% if not object_list %}
-    <p>No budgets yet! Create one</p>
+    <p>No budgets have been created yet. Make one using the "Add" button above!</p>
 
     {% else %}
         <table>
@@ -29,9 +33,6 @@
             {% endfor %}
         </table>
     {% endif %}
-
-    <h3>Recently Added Purchases</h3>
-    <p>most recents here</p>
 
 {% else %}
     {% include 'about.html' %}
